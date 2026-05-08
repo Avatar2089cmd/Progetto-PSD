@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string>
+#include <string.h>
 
 #define MAX_NUM 20 // numero massimo di posti
 #define NAME_SIZE 20 // dimensione massima del nome di uno studente
@@ -20,6 +20,6 @@ typedef struct {
     int giorno;
     int mese;
     int anno;
-} data;
+}Data;
 
 #endif // BASE_H
