@@ -19,4 +19,12 @@ typedef struct {
     int anno;
 }Data;
 
+typedef enum {
+    PRENOTATA,
+    CHECKED_IN,
+    CHECKED_OUT,
+    ANNULLATA,
+    NO_SHOW
+} StatoPrenotazione;
+
 #endif // BASE_H
