@@ -5,9 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_NUM 20 // numero massimo di posti
-#define NAME_SIZE 20 // dimensione massima del nome di uno studente
-#define MATRICOLA_SIZE 10 // dimensione massima della matricola di uno studente
 
 typedef enum { 
     MATTINA, 
