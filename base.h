@@ -25,6 +25,11 @@ typedef enum {
     CHECKED_OUT,
     ANNULLATA,
     NO_SHOW
-} StatoPrenotazione;
+}StatoPrenotazione;
+
+typedef enum{
+    WALK_IN,
+    PRENOTAZIONE
+}TipoAccesso;
 
 #endif // BASE_H
