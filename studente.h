@@ -7,6 +7,7 @@ Studente crea_studente(const char *nome, const char *matricola, const char *cors
 void distruggi_studente(Studente s); //distruttore - libera la memoria allocata per uno studente
 
 
+
 //funzioni getter per accedere ai campi di uno studente
 const char* get_nome(Studente s);
 const char* get_matricola(Studente s);
