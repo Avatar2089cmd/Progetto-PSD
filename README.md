@@ -56,4 +56,3 @@ Report:
     ● Specifica Sintattica e Semantica: Descrivere operazioni, pre/post condizioni,
     input/output ed effetti collaterali.
     ● Razionale dei Casi di Test
->>>>>>> 5ad9714de6aa50a21767e7403df1b875753eed08
