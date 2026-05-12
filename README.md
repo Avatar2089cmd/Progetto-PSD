@@ -1,7 +1,6 @@
 # Progetto-PSD
 Progetto-PSD
 
-<<<<<<< HEAD
 Test Progetto-C
 =======
 Traccia 2: Sistema di Gestione degli Accessi e delle Prenotazioni di
