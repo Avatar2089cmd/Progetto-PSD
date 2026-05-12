@@ -1,11 +1,8 @@
 # Progetto-PSD
 Progetto-PSD
 
-<<<<<<< HEAD
 Test Progetto-C
 =======
-=======
->>>>>>> 0b5531d (Adding and updating modules and files)
 Traccia 2: Sistema di Gestione degli Accessi e delle Prenotazioni di
     un’Aula Studio (Gruppo di 2 persone)
     Obiettivo:
