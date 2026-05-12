@@ -1,7 +1,10 @@
 #ifndef SHARED_H
 #define SHARED_H
 
+#include "base.h"
 //tipi condivisi tra più moduli del progetto 
+
+#define MAX_MATRICOLA 11 // 10 caratteri + terminatore "\0"
 
 typedef enum { 
     MATTINA, 

@@ -1,7 +1,7 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include "base.h"
+#include "shared.h"
 
 typedef struct Queue *Queue; //puntatore opaco alla struttura Queue
 

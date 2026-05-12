@@ -2,6 +2,7 @@
 #define PRENOTAZIONE_H
 
 #include "base.h"
+#include "shared.h"
 
 typedef struct Prenotazione *Prenotazione; //puntatore opaco alla struttura Prenotazione
 
