@@ -1,4 +1,3 @@
-#include "base.h"
 #include "studente.h"
 
 //costanti per la dimensione massima dei campi di uno studente

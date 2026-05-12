@@ -5,7 +5,7 @@
 #include "studente.h"
 #include "prenotazione.h"
 
-void database_init(); //crea e inizializza il database con i dati di tutti gli studenti per evitare 
+void database_init(); //crea e inizializza il database con i dati di tutti gli studenti
 void database_chiudi();
 
 /* operazioni su studenti */

@@ -1,6 +1,8 @@
 #ifndef STUDENTE_H
 #define STUDENTE_H
 
+#include "base.h"
+
 typedef struct Studente *Studente; //puntatore opaco alla struttura Studente
 
 Studente crea_studente(const char *nome, const char *matricola, const char *corso); //costruttore - alloca memoria per uno studente
