@@ -51,7 +51,21 @@ static void set_corso(Studente s, const char *corso){
     s->corso[MAX_CORSO - 1] = '\0';
 }
 
+//funzioni per la serializzazione su file: così non si espongono i dati e si mantiene l'information hiding
 
+void scrivi_studente(Studente s, FILE *fp){
+    fwrite(s, sizeof(struct Studente), 1, fp);
+}
+
+Studente leggi_studente(FILE *fp){
+    Studente s = malloc(sizeof(struct Studente));
+    if(s == NULL) return NULL;
+    if(fread(s, sizeof(struct Studente), 1, fp) != 1){
+        free(s);
+        return NULL;
+    }
+    return s;
+}
 
 //funzioni getter:
 

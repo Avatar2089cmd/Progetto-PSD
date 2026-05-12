@@ -1,5 +1,4 @@
 #include "prenotazione.h"
-#include "shared.h"
 
 
 typedef struct Prenotazione{
