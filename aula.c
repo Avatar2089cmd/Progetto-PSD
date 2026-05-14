@@ -5,7 +5,7 @@
 //struttura dati per rappresentare l'aula
 char aula[NUM_FASCE][POSTI_PER_FASCIA]; //L = libero, O = occupato
 
-void aula_init(void){
+void aula_init(){
     int i, j;
     for(i = 0; i < NUM_FASCE; i++){
         for(j = 0; j < POSTI_PER_FASCIA; j++){

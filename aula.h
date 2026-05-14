@@ -11,7 +11,7 @@
 
 #include "shared.h"
 
-void aula_init(void);
+void aula_init();
 
 //OPERAZIONI DI GESTIONE DELL'AULA
 /**
