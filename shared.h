@@ -1,7 +1,6 @@
 /*
  * Nome file: shared.h
- * Autore: [Tuo Nome / Gruppo]
- * Data: 14/05/2026
+ * Autore: Ranucci Simone, Scaldaferri Ilaria
  * Descrizione: Definizione dei tipi di dato condivisi e delle costanti 
  * globali del progetto. Contiene le enumerazioni per fasce orarie, 
  * stati della prenotazione e tipi di accesso, oltre alla struttura Data.

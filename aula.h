@@ -1,7 +1,6 @@
 /*
  * Nome file: aula.h
- * Autore: [Tuo Nome / Gruppo]
- * Data: 14/05/2026
+ * Autore: Ranucci Simone, Scaldaferri Ilaria
  * Descrizione: Interfaccia per la gestione fisica dell'aula studio. 
  * Il modulo si occupa di monitorare la disponibilità dei posti, 
  * gestire le occupazioni e il ripristino delle fasce orarie.

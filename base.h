@@ -1,7 +1,6 @@
 /*
  * Nome file: base.h
- * Autore: [Tuo Nome / Gruppo]
- * Data: 14/05/2026
+ * Autore: Ranucci Simone, Scaldaferri Ilaria
  * Descrizione: Header di base del progetto. Include le librerie standard 
  * del C necessarie a tutti i moduli del sistema di gestione aula studio. 
  * Agisce come punto di centralizzazione per evitare inclusioni ridondanti 

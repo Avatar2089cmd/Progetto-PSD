@@ -1,7 +1,6 @@
 /*
  * Nome file: prenotazione.h
- * Autore: [Tuo Nome / Gruppo]
- * Data: 14/05/2026
+ * Autore: Ranucci Simone, Scaldaferri Ilaria
  * Descrizione: Interfaccia dell'ADT Prenotazione. Gestisce le informazioni
  * relative alla riserva di un posto in aula, inclusi lo stato (PRENOTATA, 
  * CHECKED_IN, etc.) e il riferimento temporale (Data e Fascia).

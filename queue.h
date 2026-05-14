@@ -1,7 +1,6 @@
 /*
  * Nome file: queue.h
- * Autore: [Tuo Nome / Gruppo]
- * Data: 14/05/2026
+ * Autore: Ranucci Simone, Scaldaferri Ilaria
  * Descrizione: Interfaccia dell'ADT Coda (Queue). Il modulo gestisce una 
  * struttura dati FIFO per la gestione della lista d'attesa degli studenti.
  * Implementa l'information hiding tramite puntatore opaco.

@@ -1,7 +1,6 @@
 /*
  * Nome file: database.h
- * Autore: [Tuo Nome / Gruppo]
- * Data: 14/05/2026
+ * Autore: Ranucci Simone, Scaldaferri Ilaria
  * Descrizione: Interfaccia del modulo Database. Gestisce la persistenza dei 
  * dati degli studenti e delle prenotazioni, permettendo il caricamento, 
  * il salvataggio e la ricerca rapida tramite matricola.

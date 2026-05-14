@@ -1,7 +1,6 @@
 /*
  * Nome file: studente.h
- * Autore: [Tuo Nome / Gruppo]
- * Data: 14/05/2026
+ * Autore: Ranucci Simone, Scaldaferri Ilaria
  * Descrizione: Definizione dell'ADT Studente. Il modulo gestisce l'astrazione
  * dei dati anagrafici di uno studente universitario, fornendo
  * metodi per la creazione, distruzione e l'accesso ai dati.
