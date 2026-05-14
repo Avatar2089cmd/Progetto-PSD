@@ -10,7 +10,7 @@ typedef enum {
     MATTINA, 
     POMERIGGIO, 
     SERA,
-    NUM_FASCE_ORARIE // numero totale di fasce orarie per facilitare l'implementazione 
+    NUM_FASCE // numero totale di fasce orarie per facilitare l'implementazione 
 }FasciaOraria;
 
 typedef struct {
