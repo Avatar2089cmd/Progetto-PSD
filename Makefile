@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c89 -pendatic
+CFLAGS = -Wall -Wextra -std=c89 -pedantic
 TARGET = aula
 
 SRC = main.c \

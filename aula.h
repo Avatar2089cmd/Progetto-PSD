@@ -13,7 +13,6 @@
 
 void aula_init();
 
-//OPERAZIONI DI GESTIONE DELL'AULA
 /**
  * Operazione: get_posti_liberi_aula
  * Descrizione: Calcola e restituisce il numero di postazioni attualmente 
@@ -35,7 +34,7 @@ int get_posti_liberi_aula(FasciaOraria fascia);
  */
 int blocca_posto_aula(FasciaOraria fascia); 
 
-//OPERAZIONI DI RIPRISTINO POSTI E FASCE
+
 /**
  * Operazione: libera_posto_aula
  * Descrizione: Rende nuovamente disponibile una singola postazione specifica.
@@ -58,4 +57,4 @@ void libera_fascia_aula(FasciaOraria fascia);
 
 int aula_get_max_posti();
 
-#endif // AULA_H
+#endif

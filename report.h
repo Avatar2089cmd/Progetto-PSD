@@ -31,7 +31,6 @@ void report_init(Data data);
  */
 void registra_accesso(const char* matricola, FasciaOraria fascia, TipoAccesso tipo, StatoPrenotazione stato); 
 
-//OPERAZIONI DI GENERAZIONE E REGISTRAZIONE DEI REPORT
 /**
  * Operazione: genera_report
  * Descrizione: Analizza lo stato della lista prenotazioni e della coda 
@@ -56,4 +55,4 @@ void genera_report(ListaPrenotazioni lista, Queue coda_report, Data data);
  */
 void chiudi_report();
 
-#endif // REPORT_H
+#endif

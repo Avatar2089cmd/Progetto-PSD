@@ -69,4 +69,4 @@ typedef enum{
     PRENOTAZIONE
 }TipoAccesso;
 
-#endif // SHARED_H
+#endif

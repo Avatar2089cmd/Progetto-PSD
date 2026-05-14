@@ -19,7 +19,7 @@
  */
 typedef struct ListaPrenotazioni *ListaPrenotazioni;
 
-//OPERAZIONI SULLA LISTA DI PRENOTAZIONI
+
 /**
  * Operazione: crea_lista_prenotazioni
  * Descrizione: Alloca e inizializza una nuova lista di prenotazioni vuota.
@@ -39,7 +39,7 @@ ListaPrenotazioni crea_lista_prenotazioni();
  */
 void distruggi_lista_prenotazioni(ListaPrenotazioni lista);
 
-//OPERAZIONI DI MANIPOLAZIONE DEI DATI
+
 /**
  * Operazione: aggiungi_prenotazione
  * Descrizione: Inserisce un nuovo oggetto Prenotazione all'interno della lista.
@@ -61,7 +61,7 @@ int aggiungi_prenotazione(ListaPrenotazioni lista, Prenotazione p);
  */
 int rimuovi_prenotazione(ListaPrenotazioni lista, const char *matricola, FasciaOraria fascia);
 
-//OPERAZIONI DI RICERCA E VISUALIZZAZIONE
+
 /**
  * Operazione: cerca_prenotazione
  * Descrizione: Cerca nella lista una prenotazione specifica.
@@ -91,4 +91,4 @@ void aggiorna_stato_prenotazione(ListaPrenotazioni lista, const char *matricola,
 int visualizza_per_stato(ListaPrenotazioni lista, StatoPrenotazione stato, char flag);
 
 
-#endif // LISTA_DINAMICA_H
+#endif

@@ -75,4 +75,4 @@ const char* get_nome(Studente s);
 const char* get_matricola(Studente s);
 const char* get_corso(Studente s);
 
-#endif // STUDENTE_H
+#endif

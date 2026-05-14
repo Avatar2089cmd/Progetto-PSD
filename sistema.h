@@ -27,4 +27,4 @@ void sistema_esegui();
 /* Chiude tutti i moduli e libera la memoria. */
 void sistema_chiudi();
 
-#endif /* SISTEMA_H */
+#endif

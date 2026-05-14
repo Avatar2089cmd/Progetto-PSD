@@ -88,4 +88,4 @@ TipoAccesso queue_peek_tipo(Queue q);
 
 
 
-#endif // QUEUE_H
+#endif
