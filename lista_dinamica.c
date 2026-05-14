@@ -83,15 +83,19 @@ void aggiorna_stato_prenotazione(ListaPrenotazioni lista, const char *matricola,
     }
 }
 
-void visualizza_per_stato(ListaPrenotazioni lista, StatoPrenotazione stato){
+int visualizza_per_stato(ListaPrenotazioni lista, StatoPrenotazione stato, char flag){
     NodeLista *current = NULL;
-    if(lista == NULL) return; 
+    int count = 0;
+    if(lista == NULL) return -1; 
     current = lista->head;
     while(current != NULL){
         if(prenotazione_get_stato(current->p) == stato){
-            //visualizza prenotazione (implementare funzione di visualizzazione)
+            if(flag == 'S'){ //se flag è 'S' visualizzo solo la prenotazione, altrimenti visualizzo anche i dettagli
             visualizza_prenotazione(current->p);
+            }
+            count++;
         }
         current = current->next;
     }
+    return count;
 }

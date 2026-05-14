@@ -90,15 +90,3 @@ TipoAccesso queue_peek_tipo(Queue q);
 
 
 #endif // QUEUE_H
-
-
-
-/*
-typedef struct {
-    char matricola[20];
-    Data data;
-    FasciaOraria fascia;
-    TipoAccesso tipo;
-} Prenotazione;
-
-*/

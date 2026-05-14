@@ -55,4 +55,6 @@ void libera_posto_aula(FasciaOraria fascia, int posto);
  */
 void libera_fascia_aula(FasciaOraria fascia); 
 
+int aula_get_max_posti();
+
 #endif // AULA_H

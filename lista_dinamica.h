@@ -12,7 +12,7 @@ int aggiungi_prenotazione(ListaPrenotazioni lista, Prenotazione p);
 int rimuovi_prenotazione(ListaPrenotazioni lista, const char *matricola, Data data, FasciaOraria fascia);
 Prenotazione cerca_prenotazione(ListaPrenotazioni lista, const char *matricola, FasciaOraria fascia);
 void aggiorna_stato_prenotazione(ListaPrenotazioni lista, const char *matricola, FasciaOraria fascia, StatoPrenotazione stato);
-void visualizza_per_stato(ListaPrenotazioni lista, StatoPrenotazione stato);
+int visualizza_per_stato(ListaPrenotazioni lista, StatoPrenotazione stato, char flag);
 
 
 #endif // LISTA_DINAMICA_H

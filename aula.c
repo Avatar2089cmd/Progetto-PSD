@@ -38,3 +38,5 @@ void libera_fascia_aula(FasciaOraria fascia){
         aula[fascia][i] = 'L'; //libera tutti i posti della fascia
     }
 }
+
+int aula_get_max_posti(){return POSTI_PER_FASCIA;}
