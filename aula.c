@@ -5,6 +5,15 @@
 //struttura dati per rappresentare l'aula
 char aula[NUM_FASCE][POSTI_PER_FASCIA]; //L = libero, O = occupato
 
+void aula_init(void){
+    int i, j;
+    for(i = 0; i < NUM_FASCE; i++){
+        for(j = 0; j < POSTI_PER_FASCIA; j++){
+            aula[i][j] = 'L';
+        }
+    }
+}
+
 int get_posti_liberi_aula(FasciaOraria fascia){
     int count = 0, i=0;
     for(i = 0; i < POSTI_PER_FASCIA; i++){

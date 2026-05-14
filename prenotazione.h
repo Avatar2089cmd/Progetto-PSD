@@ -29,7 +29,7 @@ typedef struct Prenotazione *Prenotazione;
  */
 Prenotazione crea_prenotazione(const char *matricola, Data data, FasciaOraria fascia); 
 
-/**
+/*
  * Operazione: distruggi_prenotazione
  * Descrizione: Libera la memoria associata alla singola prenotazione.
  * Parametri: p - puntatore alla prenotazione da eliminare.

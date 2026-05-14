@@ -1,13 +1,13 @@
 #include "prenotazione.h"
 
 
-typedef struct Prenotazione{
+struct Prenotazione{
     char matricola[MAX_MATRICOLA];
     Data data;
     FasciaOraria fascia;
     int posto;
     StatoPrenotazione stato;
-}Prenotazione;
+};
 
 //funzione costruttore:
 Prenotazione crea_prenotazione(const char *matricola, Data data, FasciaOraria fascia){

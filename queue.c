@@ -8,22 +8,22 @@ typedef struct QueueNode {
     struct QueueNode *next;
 } QueueNode;
 
-typedef struct Queue {
+struct Queue {
     QueueNode *head;
     QueueNode *tail;
     int size;
-} Queue;
+};
 
 
-Queue crea_queue(Queue *q){
-    q = malloc(sizeof(struct Queue));
-    if(*q==NULL) return NULL; //gestione errore allocazione
+Queue crea_queue(){
+    Queue q = malloc(sizeof(struct Queue));
+    if(q==NULL) return NULL; //gestione errore allocazione
 
     q->head = NULL; //inizializzazione puntatore alla testa della coda
     q->tail = NULL; //inizializzazione puntatore alla fine  della coda
     q->size = 0; //inizializzazione della dimensione della coda
 
-    return *q;
+    return q;
 }
 
 void distruggi_queue(Queue q){

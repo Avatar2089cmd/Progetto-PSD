@@ -17,7 +17,7 @@
  * L'implementazione (tipicamente una lista semplicemente o doppiamente 
  * collegata) è nascosta nel file lista_dinamica.c.
  */
-typedef struct listaPrenotazioni *ListaPrenotazioni;
+typedef struct ListaPrenotazioni *ListaPrenotazioni;
 
 //OPERAZIONI SULLA LISTA DI PRENOTAZIONI
 /**
@@ -59,7 +59,7 @@ int aggiungi_prenotazione(ListaPrenotazioni lista, Prenotazione p);
  * Post-condizioni: Restituisce 1 se l'elemento è stato trovato e rimosso, 
  * 0 se non è stata trovata alcuna corrispondenza.
  */
-int rimuovi_prenotazione(ListaPrenotazioni lista, const char *matricola, Data data, FasciaOraria fascia);
+int rimuovi_prenotazione(ListaPrenotazioni lista, const char *matricola, FasciaOraria fascia);
 
 //OPERAZIONI DI RICERCA E VISUALIZZAZIONE
 /**

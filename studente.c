@@ -11,11 +11,11 @@ static void set_matricola(Studente s, const char *matricola);
 static void set_corso(Studente s, const char *corso);
 
 
-typedef struct Studente{
+struct Studente{
     char nome[MAX_NOME];
     char matricola[MAX_MATRICOLA];
     char corso[MAX_CORSO];
-}Studente;
+};
 
 //funzione costruttore:
 Studente crea_studente(const char *nome, const char *matricola, const char *corso){

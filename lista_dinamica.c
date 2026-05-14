@@ -5,10 +5,10 @@ typedef struct NodeLista{
     struct NodeLista *next;
 }NodeLista;
 
-typedef struct ListaPrenotazioni{
+struct ListaPrenotazioni{
     NodeLista *head;
     int size;
-}ListaPrenotazioni;
+};
 
 static int confronta_prenotazione(Prenotazione p, const char *matricola, FasciaOraria fascia){
     return strcmp(prenotazione_get_matricola(p), matricola) == 0 &&
@@ -76,7 +76,7 @@ void aggiorna_stato_prenotazione(ListaPrenotazioni lista, const char *matricola,
     while(current != NULL){
         if(strcmp(prenotazione_get_matricola(current->p), matricola) == 0 &&
            prenotazione_get_fascia(current->p) == fascia){
-            prenotazione_set_stato(current->p, stato);
+            set_stato_prenotazione(current->p, stato);
             return; //stato aggiornato
         }
         current = current->next;
@@ -98,4 +98,28 @@ int visualizza_per_stato(ListaPrenotazioni lista, StatoPrenotazione stato, char 
         current = current->next;
     }
     return count;
+}
+
+int rimuovi_prenotazione(ListaPrenotazioni lista, const char *matricola, FasciaOraria fascia){
+    NodeLista *current = NULL;
+    NodeLista *prev = NULL;
+    if(lista == NULL || matricola == NULL) return -1; 
+    current = lista->head;
+    while(current != NULL){
+        if(strcmp(prenotazione_get_matricola(current->p), matricola) == 0 &&
+           prenotazione_get_fascia(current->p) == fascia){
+            if(prev == NULL){ //rimozione del primo nodo
+                lista->head = current->next;
+            } else{
+                prev->next = current->next;
+            }
+            distruggi_prenotazione(current->p);
+            free(current);
+            lista->size--;
+            return 0; //prenotazione rimossa
+        }
+        prev = current;
+        current = current->next;
+    }
+    return -1; //prenotazione non trovata
 }

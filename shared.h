@@ -14,7 +14,7 @@
 //COSTANTI GLOBALI
 #define MAX_MATRICOLA 11 // 10 caratteri alfanumerici+ terminatore "\0"
 
-/**
+/*
  * Tipo: FasciaOraria
  * Descrizione: Rappresenta i turni disponibili nell'aula studio.
  * Note: NUM_FASCE_ORARIE viene utilizzato come "sentinella" per conoscere 
@@ -28,7 +28,7 @@ typedef enum {
     NUM_FASCE // numero totale di fasce orarie per facilitare l'implementazione 
 }FasciaOraria;
 
-/**
+/*
  * Tipo: Data
  * Descrizione: Struttura per la memorizzazione di una data solare.
  * Campi: giorno, mese, anno (interi).
@@ -39,7 +39,7 @@ typedef struct {
     int anno;
 }Data;
 
-/**
+/*
  * Tipo: StatoPrenotazione
  * Descrizione: Rappresenta il ciclo di vita di una prenotazione.
  * Valori: 
@@ -57,7 +57,7 @@ typedef enum {
     NO_SHOW
 }StatoPrenotazione;
 
-/**
+/*
  * Tipo: TipoAccesso
  * Descrizione: Rappresenta i diversi modi in cui uno studente può accedere all'aula studio.
  * Valori:

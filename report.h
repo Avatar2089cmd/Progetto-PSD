@@ -12,6 +12,24 @@
 #include "shared.h"
 #include "lista_dinamica.h"
 #include "queue.h"
+#include "aula.h"
+
+
+void report_init(Data data);
+
+/**
+ * Operazione: registra_accesso
+ * Descrizione: Scrive in tempo reale un log degli ingressi e delle uscite 
+ * su un supporto di persistenza.
+ * Parametri: 
+ * - matricola: identificativo dello studente.
+ * - fascia: turno di accesso.
+ * - tipo: modalità (WALK_IN o PRENOTAZIONE).
+ * - stato: esito dell'accesso (es. CHECKED_IN).
+ * Pre-condizioni: matricola non NULL, parametri coerenti con i tipi definiti.
+ * Post-condizioni: Una nuova riga viene aggiunta al registro degli accessi.
+ */
+void registra_accesso(const char* matricola, FasciaOraria fascia, TipoAccesso tipo, StatoPrenotazione stato); 
 
 //OPERAZIONI DI GENERAZIONE E REGISTRAZIONE DEI REPORT
 /**
@@ -28,19 +46,6 @@
  */
 void genera_report(ListaPrenotazioni lista, Queue coda_report, Data data);
 
-/**
- * Operazione: registra_accesso
- * Descrizione: Scrive in tempo reale un log degli ingressi e delle uscite 
- * su un supporto di persistenza.
- * Parametri: 
- * - matricola: identificativo dello studente.
- * - fascia: turno di accesso.
- * - tipo: modalità (WALK_IN o PRENOTAZIONE).
- * - stato: esito dell'accesso (es. CHECKED_IN).
- * Pre-condizioni: matricola non NULL, parametri coerenti con i tipi definiti.
- * Post-condizioni: Una nuova riga viene aggiunta al registro degli accessi.
- */
-void registra_accesso(const char* matricola, FasciaOraria fascia, TipoAccesso tipo, StatoPrenotazione stato); 
 
 /**
  * Operazione: chiudi_report

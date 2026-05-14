@@ -11,6 +11,8 @@
 
 #include "shared.h"
 
+void aula_init(void);
+
 //OPERAZIONI DI GESTIONE DELL'AULA
 /**
  * Operazione: get_posti_liberi_aula
