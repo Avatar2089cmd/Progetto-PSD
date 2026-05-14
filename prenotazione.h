@@ -22,6 +22,8 @@ Data prenotazione_get_data(const Prenotazione p);
 FasciaOraria prenotazione_get_fascia(const Prenotazione p);
 StatoPrenotazione prenotazione_get_stato(const Prenotazione p);
 
+void visualizza_prenotazione(Prenotazione p);
+
 
 
 #endif // PRENOTAZIONE_H

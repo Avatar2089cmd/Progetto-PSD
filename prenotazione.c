@@ -42,3 +42,24 @@ Data prenotazione_get_data(const Prenotazione p){return p->data;}
 FasciaOraria prenotazione_get_fascia(const Prenotazione p){return p->fascia;}
 StatoPrenotazione prenotazione_get_stato(const Prenotazione p){return p->stato;}
 
+void visualizza_prenotazione(Prenotazione p){
+    printf("Matricola: %s\n", p->matricola);
+    printf("Data: %02d/%02d/%04d\n", p->data.giorno, p->data.mese, p->data.anno);
+    printf("Fascia Oraria: ");
+    switch(p->fascia){
+        case MATTINA: printf("Mattina\n"); break;
+        case POMERIGGIO: printf("Pomeriggio\n"); break;
+        case SERA: printf("Sera\n"); break;
+        default: printf("Sconosciuta\n"); break;
+    }
+    printf("Posto: %d\n", p->posto);
+    printf("Stato: ");
+    switch(p->stato){
+        case PRENOTATA: printf("Prenotata\n"); break;
+        case CHECKED_IN: printf("Checked-in\n"); break;
+        case CHECKED_OUT: printf("Checked-out\n"); break;
+        case ANNULLATA: printf("Annullata\n"); break;
+        case NO_SHOW: printf("No-show\n"); break;
+        default: printf("Sconosciuto\n"); break;
+    }
+}
