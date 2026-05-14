@@ -11,9 +11,6 @@
 #include "studente.h"
 #include "prenotazione.h"
 
-#define BOLD_BLUE "\003[1;34m"
-#define RESET "\003[0m"
-
 /* ------------------------------------------------------------------ */
 /*  STATO GLOBALE DELLA SESSIONE                                       */
 /* ------------------------------------------------------------------ */
@@ -202,7 +199,7 @@ static void menu_studente(void){
     int scelta;
     char matricola[MAX_MATRICOLA];
 
-    printf("\n" BOLD_BLUE "=== ACCESSO STUDENTE ===" RESET "\n");
+    printf("\n=== ACCESSO STUDENTE ===\n");
     leggi_matricola(matricola, MAX_MATRICOLA);
 
     do {
@@ -264,7 +261,7 @@ static void menu_amministratore(void){
     char matricola[MAX_MATRICOLA];
 
     do {
-        printf("\n" BOLD_BLUE "=== MENU AMMINISTRATORE ===" RESET "\n");
+        printf("\n=== MENU AMMINISTRATORE ===\n");
         printf("  1.  Registra nuovo studente\n");
         printf("  2.  Prenota posto per uno studente\n");
         printf("  3.  Annulla prenotazione\n");
@@ -487,9 +484,9 @@ void sistema_init(Data data){
 void sistema_esegui(void){
     int ruolo;
 
-    printf("\n╔══════════════════════════════════════╗\n");
-    printf("\n║    Sistema Gestione Aula Studio      ║\n");
-    printf("\n╚══════════════════════════════════════╝\n");
+    printf("\n----------------------------------------\n");
+    printf("\n||    Sistema Gestione Aula Studio      ||\n");
+    printf("\n----------------------------------------\n");
     printf("Data sessione: %02d/%02d/%04d\n\n",
            data_sessione.giorno, data_sessione.mese, data_sessione.anno);
 

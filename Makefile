@@ -26,5 +26,5 @@ run: $(TARGET)
 	./$(TARGET)
 
 clean:
-	rm -f *.o $(TARGET)
+	rm -f *.o
 
