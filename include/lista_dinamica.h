@@ -89,6 +89,7 @@ void aggiorna_stato_prenotazione(ListaPrenotazioni lista, const char *matricola,
  * Ritorno: Numero di elementi trovati per quel determinato stato.
  */
 int visualizza_per_stato(ListaPrenotazioni lista, StatoPrenotazione stato, char flag);
+int conta_per_stato_e_fascia(ListaPrenotazioni lista, StatoPrenotazione stato, FasciaOraria fascia);
 
 void lista_aggiorna_no_show(ListaPrenotazioni lista);
 

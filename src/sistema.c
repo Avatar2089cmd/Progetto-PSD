@@ -11,10 +11,18 @@
 #include "studente.h"
 #include "prenotazione.h"
 
+/* ------------------------------------------------------------------ */
+/*  STATO GLOBALE DELLA SESSIONE                                       */
+/* ------------------------------------------------------------------ */
+
 static ListaPrenotazioni lista_prenotazioni = NULL;
-static Queue coda_attesa = NULL;
-static Data data_sessione;
-static int report_generato = 0;
+static Queue             coda_attesa        = NULL;
+static Data              data_sessione;
+static int               report_generato    = 0;
+
+/* ------------------------------------------------------------------ */
+/*  UTILITY LOCALI                                                     */
+/* ------------------------------------------------------------------ */
 
 static void svuota_buffer(void){
     int c;
@@ -49,15 +57,37 @@ static void leggi_matricola(char *buf, int size){
     svuota_buffer();
 }
 
-static void chiudi_sessione(void){
-    lista_aggiorna_no_show(lista_prenotazioni);
+/* Registra lo studente se non esiste nel DB; restituisce 1 se ok */
+static int assicura_studente_registrato(const char *matricola){
+    char nome[20];
+    char corso[30];
+    Studente s;
+
+    if(database_studente_esiste(matricola)) return 1;
+
+    printf("[INFO] Matricola non trovata. Registrazione necessaria.\n");
+    printf("Nome: "); scanf("%19s", nome); svuota_buffer();
+    printf("Corso di laurea: "); scanf("%29s", corso); svuota_buffer();
+    s = crea_studente(nome, matricola, corso);
+    if(s == NULL){
+        printf("[ERRORE] Allocazione fallita.\n");
+        return 0;
+    }
+    database_salva_studente(s);
+    distruggi_studente(s);
+    printf("[OK] Registrazione completata.\n");
+    return 1;
 }
+
+/* ------------------------------------------------------------------ */
+/*  PROMOZIONE AUTOMATICA DALLA CODA ATTESA                           */
+/* ------------------------------------------------------------------ */
 
 static void promuovi_dalla_coda(FasciaOraria fascia){
     Queue tmp;
     FasciaOraria f;
-    const char *m;
-    TipoAccesso t;
+    const char  *m;
+    TipoAccesso  t;
     Prenotazione p;
     int posto;
 
@@ -97,6 +127,10 @@ static void promuovi_dalla_coda(FasciaOraria fascia){
     distruggi_queue(tmp);
 }
 
+/* ------------------------------------------------------------------ */
+/*  OPERAZIONI CONDIVISE                                               */
+/* ------------------------------------------------------------------ */
+
 static void mostra_disponibilita(void){
     printf("\n--- Disponibilita' posti ---\n");
     printf("  Mattina:    %d posti liberi\n", get_posti_liberi_aula(MATTINA));
@@ -121,13 +155,13 @@ static void op_prenota(const char *matricola){
 
     p = cerca_prenotazione(lista_prenotazioni, matricola, fascia);
     if(p != NULL && prenotazione_get_stato(p) != ANNULLATA){
-        printf("[ERRORE] Esiste gia' una prenotazione per questa fascia.\n");
+        printf("[ERRORE] Esiste gia' una prenotazione attiva per questa fascia.\n");
         return;
     }
 
     if(get_posti_liberi_aula(fascia) <= 0){
         enqueue(coda_attesa, matricola, fascia, PRENOTAZIONE);
-        printf("[INFO] Aula piena. Sei stato aggiunto alla lista d'attesa per %s.\n",
+        printf("[INFO] Aula piena. Aggiunto alla lista d'attesa per %s.\n",
                fascia_to_str(fascia));
         return;
     }
@@ -151,7 +185,7 @@ static void op_annulla_prenotazione(const char *matricola){
 
     p = cerca_prenotazione(lista_prenotazioni, matricola, fascia);
     if(p == NULL){
-        printf("[ERRORE] Nessuna prenotazione trovata.\n");
+        printf("[ERRORE] Nessuna prenotazione trovata per questa fascia.\n");
         return;
     }
     if(prenotazione_get_stato(p) == ANNULLATA){
@@ -163,7 +197,6 @@ static void op_annulla_prenotazione(const char *matricola){
     aggiorna_stato_prenotazione(lista_prenotazioni, matricola, fascia, ANNULLATA);
     registra_accesso(matricola, fascia, PRENOTAZIONE, ANNULLATA);
     printf("[OK] Prenotazione annullata.\n");
-
     promuovi_dalla_coda(fascia);
 }
 
@@ -177,7 +210,7 @@ static void op_checkin(const char *matricola){
 
     p = cerca_prenotazione(lista_prenotazioni, matricola, fascia);
     if(p == NULL || prenotazione_get_stato(p) != PRENOTATA){
-        printf("[ERRORE] Nessuna prenotazione attiva trovata per questa fascia.\n");
+        printf("[ERRORE] Nessuna prenotazione attiva per questa fascia.\n");
         return;
     }
     aggiorna_stato_prenotazione(lista_prenotazioni, matricola, fascia, CHECKED_IN);
@@ -213,26 +246,14 @@ static void op_checkout(const char *matricola){
 static void menu_studente(void){
     int scelta;
     char matricola[MAX_MATRICOLA];
-    char nome[20];
-    char corso[30];
     FasciaOraria f;
     Prenotazione p;
-    Studente s;
 
     printf("\n=== ACCESSO STUDENTE ===\n");
     leggi_matricola(matricola, MAX_MATRICOLA);
 
-    if(!database_studente_esiste(matricola)){
-        printf("[INFO] Matricola non trovata. Registrazione necessaria.\n");
-        printf("Nome: "); scanf("%19s", nome); svuota_buffer();
-        printf("Corso di laurea: "); scanf("%29s", corso); svuota_buffer();
-        s = crea_studente(nome, matricola, corso);
-        if(s != NULL){
-            database_salva_studente(s);
-            distruggi_studente(s);
-            printf("[OK] Registrazione completata.\n");
-        }
-    }
+    /* Auto-registrazione se necessario */
+    if(!assicura_studente_registrato(matricola)) return;
 
     do {
         printf("\n--- Menu Studente (%s) ---\n", matricola);
@@ -248,10 +269,10 @@ static void menu_studente(void){
         svuota_buffer();
 
         switch(scelta){
-            case 1: mostra_disponibilita();          break;
-            case 2: op_prenota(matricola);            break;
-            case 3: op_checkin(matricola);            break;
-            case 4: op_checkout(matricola);           break;
+            case 1: mostra_disponibilita();         break;
+            case 2: op_prenota(matricola);          break;
+            case 3: op_checkin(matricola);          break;
+            case 4: op_checkout(matricola);         break;
             case 5: op_annulla_prenotazione(matricola); break;
             case 6:
                 printf("\n--- Le tue prenotazioni ---\n");
@@ -285,7 +306,8 @@ static void menu_amministratore(void){
     FasciaOraria fascia;
     Prenotazione p;
     int posto;
-    int n, i;
+    int n;
+    int i;
     Queue tmp;
     Studente s;
 
@@ -297,7 +319,7 @@ static void menu_amministratore(void){
         printf("  4.  Check-in studente prenotato\n");
         printf("  5.  Accesso diretto (walk-in)\n");
         printf("  6.  Check-out studente\n");
-        printf("  7.  Visualizza prenotati\n");
+        printf("  7.  Visualizza prenotati per fascia\n");
         printf("  8.  Visualizza presenti (checked-in)\n");
         printf("  9.  Visualizza lista d'attesa\n");
         printf("  10. Disponibilita' posti\n");
@@ -308,6 +330,7 @@ static void menu_amministratore(void){
         svuota_buffer();
 
         switch(scelta){
+
             case 1:
                 printf("Nome: "); scanf("%19s", nome); svuota_buffer();
                 leggi_matricola(matricola, MAX_MATRICOLA);
@@ -339,21 +362,17 @@ static void menu_amministratore(void){
                 break;
 
             case 5:
+                /* Walk-in: auto-registra se necessario */
                 leggi_matricola(matricola, MAX_MATRICOLA);
-                /* Se lo studente non e' nel DB, lo registriamo subito */
-                if(!database_studente_esiste(matricola)){
-                    printf("[INFO] Matricola non trovata. Inserire i dati dello studente.\n");
-                    printf("Nome: "); scanf("%19s", nome); svuota_buffer();
-                    printf("Corso di laurea: "); scanf("%29s", corso); svuota_buffer();
-                    s = crea_studente(nome, matricola, corso);
-                    if(s == NULL){ printf("[ERRORE] Allocazione fallita.\n"); break; }
-                    database_salva_studente(s);
-                    distruggi_studente(s);
-                    printf("[OK] Studente registrato.\n");
-                }
+                if(!assicura_studente_registrato(matricola)) break;
                 printf("Seleziona fascia:\n");
                 fascia = leggi_fascia();
                 if((int)fascia < 0){ printf("[ERRORE] Fascia non valida.\n"); break; }
+                if(!is_empty(coda_attesa)){
+                    enqueue(coda_attesa, matricola, fascia, WALK_IN);
+                    printf("[INFO] Coda non vuota. Studente aggiunto in lista d'attesa.\n");
+                    break;
+                }
                 if(get_posti_liberi_aula(fascia) <= 0){
                     enqueue(coda_attesa, matricola, fascia, WALK_IN);
                     printf("[INFO] Aula piena. Studente aggiunto alla lista d'attesa.\n");
@@ -420,9 +439,10 @@ static void menu_amministratore(void){
                 break;
 
             case 11:
+                lista_aggiorna_no_show(lista_prenotazioni);
                 genera_report(lista_prenotazioni, coda_attesa, data_sessione);
                 report_generato = 1;
-                printf("[OK] Report generato.\n");
+                printf("[OK] Report generato nella cartella storico/.\n");
                 break;
 
             case 0:
@@ -445,9 +465,9 @@ void sistema_init(Data data){
     database_init();
     aula_init();
     lista_prenotazioni = crea_lista_prenotazioni();
-    coda_attesa = crea_queue();
+    coda_attesa        = crea_queue();
     report_init(data);
-    report_generato = 0;
+    report_generato    = 0;
 
     if(lista_prenotazioni == NULL || coda_attesa == NULL){
         fprintf(stderr, "Impossibile allocare le strutture dati principali.\n");
@@ -458,16 +478,16 @@ void sistema_init(Data data){
 void sistema_esegui(void){
     int ruolo;
 
-    printf("\n----------------------------------------\n");
-    printf("||  Sistema Gestione Aula Studio       ||\n");
-    printf("----------------------------------------\n");
-    printf("Data sessione: %02d/%02d/%04d\n\n",
+    printf("\n========================================\n");
+    printf("||   Sistema Gestione Aula Studio      ||\n");
+    printf("========================================\n");
+    printf("Data sessione: %02d/%02d/%04d\n",
            data_sessione.giorno, data_sessione.mese, data_sessione.anno);
 
     do {
-        printf("\nAccesso al programma:\n");
-        printf("  1. Studente\n");
-        printf("  2. Amministratore\n");
+        printf("\n--- Menu Principale ---\n");
+        printf("  1. Accedi come Studente\n");
+        printf("  2. Accedi come Amministratore\n");
         printf("  0. Esci dal programma\n");
         printf("Scelta: ");
         if(scanf("%d", &ruolo) != 1){ svuota_buffer(); ruolo = -1; }
@@ -485,14 +505,11 @@ void sistema_esegui(void){
 }
 
 void sistema_chiudi(void){
-    FasciaOraria f;
-    /* Forza checkout di chi e' ancora in aula e NO_SHOW per chi non e' mai arrivato */
-    for(f = MATTINA; f < NUM_FASCE; f++){
-        libera_fascia_aula(f);
-    }
-    chiudi_sessione();
+    /* Aggiorna no-show e genera report finale se non gia' fatto */
+    lista_aggiorna_no_show(lista_prenotazioni);
     if(!report_generato){
         genera_report(lista_prenotazioni, coda_attesa, data_sessione);
+        printf("[INFO] Report finale generato nella cartella storico/.\n");
     }
     chiudi_report();
     distruggi_lista_prenotazioni(lista_prenotazioni);

@@ -1,5 +1,8 @@
 # standard directory
 .vscode/
+obj/ *.o
+obj/* .obj
+storico/*.txt
 
 # Prerequisites
 *.d

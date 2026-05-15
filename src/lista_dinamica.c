@@ -100,6 +100,21 @@ int visualizza_per_stato(ListaPrenotazioni lista, StatoPrenotazione stato, char 
     return count;
 }
 
+int conta_per_stato_e_fascia(ListaPrenotazioni lista, StatoPrenotazione stato, FasciaOraria fascia){
+    NodeLista *current = NULL;
+    int count = 0;
+    if(lista == NULL) return 0;
+    current = lista->head;
+    while(current != NULL){
+        if(prenotazione_get_stato(current->p) == stato &&
+           prenotazione_get_fascia(current->p) == fascia){
+            count++;
+        }
+        current = current->next;
+    }
+    return count;
+}
+
 int rimuovi_prenotazione(ListaPrenotazioni lista, const char *matricola, FasciaOraria fascia){
     NodeLista *current = NULL;
     NodeLista *prev = NULL;
