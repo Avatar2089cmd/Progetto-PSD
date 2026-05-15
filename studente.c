@@ -1,11 +1,11 @@
 #include "studente.h"
 #include "shared.h"
 
-//costanti per la dimensione massima dei campi di uno studente
+/* costanti per la dimensione massima dei campi di uno studente */
 #define MAX_NOME 20
 #define MAX_CORSO 30
 
-//prototipi funzioni statiche per i setter
+/* prototipi funzioni statiche per i setter */
 static void set_nome(Studente s, const char *nome);
 static void set_matricola(Studente s, const char *matricola);
 static void set_corso(Studente s, const char *corso);
@@ -17,11 +17,11 @@ struct Studente{
     char corso[MAX_CORSO];
 };
 
-//funzione costruttore:
+/*funzione costruttore:*/
 Studente crea_studente(const char *nome, const char *matricola, const char *corso){
     Studente s = malloc(sizeof(struct Studente));
     if(s == NULL){
-        return NULL; //gestione errore allocazione
+        return NULL; /*gestione errore allocazione*/
     }
     set_matricola(s, matricola);
     set_nome(s, nome);
@@ -29,16 +29,16 @@ Studente crea_studente(const char *nome, const char *matricola, const char *cors
     return s;
 }
 
-//funzione distruttore:
+/*funzione distruttore:*/
 void distruggi_studente(Studente s){
     free(s);
 }
 
-//static setter:
+/*static setter:*/
 
 static void set_nome(Studente s, const char *nome){
     strncpy(s->nome, nome, MAX_NOME);
-    s->nome[MAX_NOME - 1] = '\0'; //garantisce la terminazione della stringa
+    s->nome[MAX_NOME - 1] = '\0'; /*garantisce la terminazione della stringa*/
 }
 
 static void set_matricola(Studente s, const char *matricola){
@@ -51,7 +51,7 @@ static void set_corso(Studente s, const char *corso){
     s->corso[MAX_CORSO - 1] = '\0';
 }
 
-//funzioni per la serializzazione su file: così non si espongono i dati e si mantiene l'information hiding
+/*funzioni per la serializzazione su file: così non si espongono i dati e si mantiene l'information hiding*/
 
 void scrivi_studente(Studente s, FILE *fp){
     fwrite(s, sizeof(struct Studente), 1, fp);
@@ -67,7 +67,7 @@ Studente leggi_studente(FILE *fp){
     return s;
 }
 
-//funzioni getter:
+/*funzioni getter:*/
 
 const char* get_nome(Studente s){return s->nome;}
 const char* get_matricola(Studente s){return s->matricola;}

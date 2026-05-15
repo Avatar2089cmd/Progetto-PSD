@@ -16,9 +16,9 @@
  * per garantire l'incapsulamento dei dati (Information Hiding).
  */
 
-typedef struct Studente *Studente; //puntatore opaco alla struttura Studente
+typedef struct Studente *Studente; /*puntatore opaco alla struttura Studente*/
 
-//SPECIFICA SINTATTICA E SEMANTICA
+/*SPECIFICA SINTATTICA E SEMANTICA*/
 /**
  * Operazione: crea_studente
  * Descrizione: Alloca dinamicamente memoria per un nuovo oggetto Studente 
@@ -31,7 +31,7 @@ typedef struct Studente *Studente; //puntatore opaco alla struttura Studente
  * In caso di fallimento della malloc, restituisce NULL.
  */
 
-Studente crea_studente(const char *nome, const char *matricola, const char *corso); //costruttore - alloca memoria per uno studente
+Studente crea_studente(const char *nome, const char *matricola, const char *corso); /*costruttore - alloca memoria per uno studente*/
 
 /**
  * Operazione: distruggi_studente
@@ -42,7 +42,7 @@ Studente crea_studente(const char *nome, const char *matricola, const char *cors
  * Post-condizioni: La memoria occupata da s è resa nuovamente disponibile.
  * Il puntatore s non è più utilizzabile.
  */
-void distruggi_studente(Studente s); //distruttore - libera la memoria allocata per uno studente
+void distruggi_studente(Studente s); /*distruttore - libera la memoria allocata per uno studente*/
 
 /**
  * Operazione: scrivi_studente
@@ -63,7 +63,7 @@ void scrivi_studente(Studente s, FILE *fp);
  */
 Studente leggi_studente(FILE *fp);
 
-//FUNZIONI GETTER
+/*FUNZIONI GETTER*/
 /**
  * Operazione: get_nome / get_matricola / get_corso
  * Descrizione: Funzioni per l'accesso controllato ai campi della struttura opaca.

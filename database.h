@@ -12,7 +12,7 @@
 #include "studente.h"
 #include "prenotazione.h"
 
-//OPERAZIONI DI GESTIONE DEL SISTEMA
+/*OPERAZIONI DI GESTIONE DEL SISTEMA*/
 /**
  * Operazione: database_init
  * Descrizione: Inizializza il database caricando i dati degli studenti 
@@ -35,7 +35,7 @@ void database_init();
  */
 void database_chiudi();
 
-//OPERAZIONI SUGLI STUDENTI
+/*OPERAZIONI SUGLI STUDENTI*/
 /**
  * Operazione: database_salva_studente
  * Descrizione: Aggiunge un nuovo oggetto Studente al database e lo 

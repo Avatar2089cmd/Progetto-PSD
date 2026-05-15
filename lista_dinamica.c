@@ -77,7 +77,7 @@ void aggiorna_stato_prenotazione(ListaPrenotazioni lista, const char *matricola,
         if(strcmp(prenotazione_get_matricola(current->p), matricola) == 0 &&
            prenotazione_get_fascia(current->p) == fascia){
             set_stato_prenotazione(current->p, stato);
-            return; //stato aggiornato
+            return;
         }
         current = current->next;
     }
@@ -90,7 +90,7 @@ int visualizza_per_stato(ListaPrenotazioni lista, StatoPrenotazione stato, char 
     current = lista->head;
     while(current != NULL){
         if(prenotazione_get_stato(current->p) == stato){
-            if(flag == 'S'){ //se flag è 'S' visualizzo solo la prenotazione, altrimenti visualizzo anche i dettagli
+            if(flag == 'S'){ /*se flag è 'S' visualizzo solo la prenotazione, altrimenti visualizzo anche i dettagli*/
             visualizza_prenotazione(current->p);
             }
             count++;
@@ -108,7 +108,7 @@ int rimuovi_prenotazione(ListaPrenotazioni lista, const char *matricola, FasciaO
     while(current != NULL){
         if(strcmp(prenotazione_get_matricola(current->p), matricola) == 0 &&
            prenotazione_get_fascia(current->p) == fascia){
-            if(prev == NULL){ //rimozione del primo nodo
+            if(prev == NULL){ /*rimozione del primo nodo*/
                 lista->head = current->next;
             } else{
                 prev->next = current->next;
@@ -116,10 +116,22 @@ int rimuovi_prenotazione(ListaPrenotazioni lista, const char *matricola, FasciaO
             distruggi_prenotazione(current->p);
             free(current);
             lista->size--;
-            return 0; //prenotazione rimossa
+            return 0; /*prenotazione rimossa*/
         }
         prev = current;
         current = current->next;
     }
-    return -1; //prenotazione non trovata
+    return -1; /*prenotazione non trovata*/
+}
+
+void lista_aggiorna_no_show(ListaPrenotazioni lista){
+    NodeLista *current = NULL;
+    if(lista == NULL) return;
+    current = lista->head;
+    while(current != NULL){
+        if(prenotazione_get_stato(current->p) == PRENOTATA){
+            set_stato_prenotazione(current->p, NO_SHOW);
+        }
+        current = current->next;
+    }
 }

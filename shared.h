@@ -11,8 +11,8 @@
 
 #include "base.h"
  
-//COSTANTI GLOBALI
-#define MAX_MATRICOLA 11 // 10 caratteri alfanumerici+ terminatore "\0"
+/*COSTANTI GLOBALI*/
+#define MAX_MATRICOLA 11 /* 10 caratteri alfanumerici+ terminatore "\0" */
 
 /*
  * Tipo: FasciaOraria
@@ -25,7 +25,7 @@ typedef enum {
     MATTINA, 
     POMERIGGIO, 
     SERA,
-    NUM_FASCE // numero totale di fasce orarie per facilitare l'implementazione 
+    NUM_FASCE 
 }FasciaOraria;
 
 /*

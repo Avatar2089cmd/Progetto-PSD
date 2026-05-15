@@ -2,8 +2,8 @@
 
 #define POSTI_PER_FASCIA 20
 
-//struttura dati per rappresentare l'aula
-char aula[NUM_FASCE][POSTI_PER_FASCIA]; //L = libero, O = occupato
+/*struttura dati per rappresentare l'aula*/
+char aula[NUM_FASCE][POSTI_PER_FASCIA]; /*L = libero, O = occupato*/
 
 void aula_init(){
     int i, j;
@@ -28,23 +28,23 @@ int blocca_posto_aula(FasciaOraria fascia){
     int i=0;
     for(i = 0; i < POSTI_PER_FASCIA; i++){
         if(aula[fascia][i] == 'L'){
-            aula[fascia][i] = 'O'; //blocca il posto
-            return i; //restituisce l'indice del posto bloccato
+            aula[fascia][i] = 'O'; 
+            return i;
         }
     }
-    return -1; //nessun posto disponibile
+    return -1; 
 }
 
 void libera_posto_aula(FasciaOraria fascia, int posto){
     if(posto >= 0 && posto < POSTI_PER_FASCIA){
-        aula[fascia][posto] = 'L'; //libera il posto
+        aula[fascia][posto] = 'L'; 
     }
 }
 
 void libera_fascia_aula(FasciaOraria fascia){
     int i=0;
     for(i = 0; i < POSTI_PER_FASCIA; i++){
-        aula[fascia][i] = 'L'; //libera tutti i posti della fascia
+        aula[fascia][i] = 'L'; 
     }
 }
 

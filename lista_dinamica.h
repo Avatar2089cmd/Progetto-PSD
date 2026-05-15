@@ -90,5 +90,7 @@ void aggiorna_stato_prenotazione(ListaPrenotazioni lista, const char *matricola,
  */
 int visualizza_per_stato(ListaPrenotazioni lista, StatoPrenotazione stato, char flag);
 
+void lista_aggiorna_no_show(ListaPrenotazioni lista);
+
 
 #endif

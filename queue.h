@@ -16,9 +16,9 @@
  * L'implementazione interna (basata su lista collegata o array) 
  * è nascosta nel file queue.c.
  */
-typedef struct Queue *Queue; //puntatore opaco alla struttura Queue
+typedef struct Queue *Queue; 
 
-//SPECIFICA SINTATTICA E SEMANTICA
+/*SPECIFICA SINTATTICA E SEMANTICA*/
 /**
  * Operazione: crea_queue
  * Descrizione: Alloca e inizializza una nuova coda vuota.
@@ -71,7 +71,7 @@ void enqueue(Queue q, const char *matricola, FasciaOraria fascia, TipoAccesso ti
  */
 void dequeue(Queue q); 
 
-//FUNZIONI PEEK
+/*FUNZIONI PEEK*/
 /* Queste funzioni permettono di leggere i dati dell'elemento che sta 
  * per essere estratto senza rimuoverlo effettivamente.
  */

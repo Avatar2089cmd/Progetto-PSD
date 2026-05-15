@@ -24,7 +24,7 @@ void registra_accesso(const char* matricola, FasciaOraria fascia, TipoAccesso ti
     stato == CHECKED_IN ? "Check-in" : stato == CHECKED_OUT ? "Check-out" : 
     stato == ANNULLATA ? "Annullata" : stato == NO_SHOW ? "No-show" : "Prenotata"
     );
-    fflush(fp_report); //assicuro che i dati vengano scritti su disco
+    fflush(fp_report); /*assicuro che i dati vengano scritti su disco*/
 }
 
 void genera_report(ListaPrenotazioni lista, Queue coda_attesa, Data data) {
@@ -64,7 +64,7 @@ void genera_report(ListaPrenotazioni lista, Queue coda_attesa, Data data) {
     fprintf(fp_report, "Pomeriggio: %d/%d posti occupati\n", occ_pomeriggio, aula_get_max_posti());
     fprintf(fp_report, "Sera: %d/%d posti occupati\n", occ_sera, aula_get_max_posti());
 
-    fflush(fp_report); //assicuro che i dati vengano scritti su disco
+    fflush(fp_report); /*assicuro che i dati vengano scritti su disco*/
 }
 
 void chiudi_report() {

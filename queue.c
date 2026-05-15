@@ -14,22 +14,24 @@ struct Queue {
     int size;
 };
 
-
 Queue crea_queue(){
     Queue q = malloc(sizeof(struct Queue));
-    if(q==NULL) return NULL; //gestione errore allocazione
+    if(q==NULL) return NULL; 
 
-    q->head = NULL; //inizializzazione puntatore alla testa della coda
-    q->tail = NULL; //inizializzazione puntatore alla fine  della coda
-    q->size = 0; //inizializzazione della dimensione della coda
+    q->head = NULL; 
+    q->tail = NULL; 
+    q->size = 0; 
 
     return q;
 }
 
 void distruggi_queue(Queue q){
-    if(q == NULL) return;
-    QueueNode *current = q->head;
+    QueueNode *current = NULL;
     QueueNode *prox = NULL;
+    
+    if(q == NULL) return;
+    current = q->head;
+    prox = NULL;
     while(current != NULL){
         prox = current->next;
         free(current);
@@ -38,28 +40,27 @@ void distruggi_queue(Queue q){
     free(q);
 }
 
-// Implementazione delle funzioni dichiarate in queue.h
+/* Implementazione delle funzioni dichiarate in queue.h*/
 
 int is_empty(Queue q){return q->size == 0;}
 int get_dimensione(Queue q){return q->size;}
 
 FasciaOraria queue_peek_fascia(Queue q){
-    if(is_empty(q)) return -1; //gestione coda vuota
+    if(is_empty(q)) return -1; 
     return q->head->fascia;
 }
 char* queue_peek_matricola(Queue q){
-    if(is_empty(q)) return NULL; //gestione coda vuota
+    if(is_empty(q)) return NULL; 
     return q->head->matricola;
 }
 TipoAccesso queue_peek_tipo(Queue q){
-    if(is_empty(q)) return -1; //gestione coda vuota
+    if(is_empty(q)) return -1; 
     return q->head->tipo;
 }    
 
 void enqueue(Queue q, const char *matricola, FasciaOraria fascia, TipoAccesso tipo){
-    // Implementazione dell'aggiunta di una prenotazione alla coda
     QueueNode *new_node = malloc(sizeof(QueueNode));
-    if (new_node == NULL) return; //gestione errore allocazione
+    if (new_node == NULL) return; 
         strncpy(new_node->matricola, matricola, MAX_MATRICOLA);
         new_node -> matricola[MAX_MATRICOLA -1] = '\0';
         new_node -> fascia = fascia;
@@ -76,8 +77,9 @@ void enqueue(Queue q, const char *matricola, FasciaOraria fascia, TipoAccesso ti
 }
 
 void dequeue(Queue q){
+    QueueNode *temp = NULL;
     if(is_empty(q)) return;
-    QueueNode *temp = q->head;
+    temp = q->head;
     q->head = q->head->next;
     if(q->head == NULL){
         q->tail = NULL;

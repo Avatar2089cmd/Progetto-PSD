@@ -17,7 +17,7 @@
  */
 typedef struct Prenotazione *Prenotazione; 
 
-//SPECIFICA SINTATTICA E SEMANTICA
+/*SPECIFICA SINTATTICA E SEMANTICA*/
 /**
  * Operazione: crea_prenotazione
  * Descrizione: Alloca memoria per una nuova prenotazione e ne inizializza 
@@ -27,7 +27,7 @@ typedef struct Prenotazione *Prenotazione;
  * Pre-condizioni: matricola non NULL, data valida, fascia valida.
  * Post-condizioni: Restituisce un oggetto Prenotazione inizializzato.
  */
-Prenotazione crea_prenotazione(const char *matricola, Data data, FasciaOraria fascia); 
+Prenotazione crea_prenotazione(const char *matricola, Data data, FasciaOraria fascia); /*costruttore*/
 
 /*
  * Operazione: distruggi_prenotazione
@@ -36,9 +36,9 @@ Prenotazione crea_prenotazione(const char *matricola, Data data, FasciaOraria fa
  * Pre-condizioni: p non deve essere NULL.
  * Post-condizioni: Memoria deallocata; p non è più utilizzabile.
  */
-void distruggi_prenotazione(Prenotazione p); //distruttore
+void distruggi_prenotazione(Prenotazione p); /*distruttore*/
 
-//FUNZIONI SETTER PER MODIFICARE LO STATO DELLA PRENOTAZIONE
+/*FUNZIONI SETTER PER MODIFICARE LO STATO DELLA PRENOTAZIONE*/
 /**
  * Operazione: set_posto_prenotazione
  * Descrizione: Assegna un numero di posto fisico alla prenotazione.
@@ -65,7 +65,7 @@ void annulla_prenotazione(Prenotazione p);
  */
 void set_stato_prenotazione(Prenotazione p, StatoPrenotazione stato);
 
-//FUNZIONI GETTER PER ACCEDERE AI CAMPI DELLA PRENOTAZIONE
+/*FUNZIONI GETTER PER ACCEDERE AI CAMPI DELLA PRENOTAZIONE*/
 /**
  * Operazione: prenotazione_get_*
  * Descrizione: Serie di selettori per recuperare i dati dall'oggetto opaco.
