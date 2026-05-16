@@ -1,10 +1,6 @@
 #include "studente.h"
 #include "shared.h"
 
-/* costanti per la dimensione massima dei campi di uno studente */
-#define MAX_NOME 20
-#define MAX_CORSO 30
-
 /* prototipi funzioni statiche per i setter */
 static void set_nome(Studente s, const char *nome);
 static void set_matricola(Studente s, const char *matricola);

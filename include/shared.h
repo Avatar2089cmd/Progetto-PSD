@@ -12,7 +12,9 @@
 #include "base.h"
  
 /*COSTANTI GLOBALI*/
-#define MAX_MATRICOLA 11 /* 10 caratteri alfanumerici+ terminatore "\0" */
+#define MAX_MATRICOLA 11
+#define MAX_NOME 20
+#define MAX_CORSO 30
 
 /*
  * Tipo: FasciaOraria

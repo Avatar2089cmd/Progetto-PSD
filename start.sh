@@ -16,8 +16,8 @@ if ! command -v $MAKE_CMD &> /dev/null; then
     exit 1
 fi
 
-# Esegue il Makefile specifico per Linux/macOS
-$MAKE_CMD -f Makefile_LX_MOS
+# Esegue il Makefile spostandosi dentro la directory 'Makefile_LX_MOS'
+$MAKE_CMD -C Makefile_LX_MOS
 
 if [ $? -ne 0 ]; then
     echo ""
@@ -47,7 +47,8 @@ echo "================================"
 
 if [ $EXITCODE -eq 0 ]; then
     echo "Uscita normale: pulizia..."
-    $MAKE_CMD -f Makefile_LX_MOS clean
+    # Corretto anche qui per fare la pulizia nella cartella giusta
+    $MAKE_CMD -C Makefile_LX_MOS clean
 else
     echo "Crash o errore rilevato (Codice: $EXITCODE)"
     
